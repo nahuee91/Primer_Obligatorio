@@ -1,0 +1,15 @@
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\obj\Debug\net6.0\Primer Obligatorio 2022.csproj.AssemblyReference.cache
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\obj\Debug\net6.0\Primer Obligatorio 2022.GeneratedMSBuildEditorConfig.editorconfig
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\obj\Debug\net6.0\Primer Obligatorio 2022.AssemblyInfoInputs.cache
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\obj\Debug\net6.0\Primer Obligatorio 2022.AssemblyInfo.cs
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\obj\Debug\net6.0\Primer Obligatorio 2022.csproj.CoreCompileInputs.cache
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\bin\Debug\net6.0\Primer Obligatorio 2022.exe
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\bin\Debug\net6.0\Primer Obligatorio 2022.deps.json
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\bin\Debug\net6.0\Primer Obligatorio 2022.runtimeconfig.json
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\bin\Debug\net6.0\Primer Obligatorio 2022.dll
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\bin\Debug\net6.0\Primer Obligatorio 2022.pdb
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\obj\Debug\net6.0\Primer Obligatorio 2022.dll
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\obj\Debug\net6.0\refint\Primer Obligatorio 2022.dll
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\obj\Debug\net6.0\Primer Obligatorio 2022.pdb
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\obj\Debug\net6.0\Primer Obligatorio 2022.genruntimeconfig.cache
+E:\carrera\PrimerObligatorio\Primer Obligatorio 2022\obj\Debug\net6.0\ref\Primer Obligatorio 2022.dll
