@@ -8,7 +8,7 @@ namespace Primer_Obligatorio_2022
         static void Main(string[] args)
         {
             
-            int [,] quinielas = new int[3, 20];
+            int [,] quinielas = new int[Dias(), 20];
             int option = 0;
             while (option != 5)
             {
@@ -43,7 +43,7 @@ namespace Primer_Obligatorio_2022
                         }
                 }
             }
-            Console.WriteLine("Gracias por usar nuestra aplicación...");
+            Console.WriteLine("\n Gracias por usar nuestra aplicación...");
             Console.ReadLine();
         }
 
@@ -80,7 +80,7 @@ namespace Primer_Obligatorio_2022
                 }
                 catch
                 {
-                    Console.WriteLine("\n\n El dato ingresado no es correcto, presione enter para continuar...");
+                    Console.WriteLine("\n El dato ingresado no es correcto, presione enter para continuar...");
                     Console.ReadLine();
                     Console.Clear();
 
@@ -110,44 +110,45 @@ namespace Primer_Obligatorio_2022
                         Console.ReadLine();
                         Console.Clear();
                     }
-                    else
+                    else 
                     {
                         bool fechaExistente = FechaIngresada(matriz, diaAgregar);
                         if (!fechaExistente)
+                        {
+                            for (int j = 0; j < matriz.GetLength(1); j++)
+                            {
+                                try
+                                {
+                                    Console.Write("Ingrese numero para el " + (j + 1) + "° premio: ");
+                                    int premio = Convert.ToInt32(Console.ReadLine());
+                                    bool duplicado = PremioDuplicado(premio, diaAgregar, matriz);
+
+                                    if (!(premio < 999 && premio > 0))
+                                    {
+                                        Console.WriteLine("\nEl premio ingresado no puede ser menor que 0 ni mayor a 999\n");
+                                        j--;
+                                    }
+                                    else if (duplicado)
+                                    {
+                                        Console.WriteLine("\nEl premio ingresado ya existe para este día\n");
+                                        j--;
+                                    }
+                                    else
+                                    {
+                                        matriz[diaAgregar - 1, j] = premio;
+                                    }
+                                }
+                                catch
+                                {
+                                    Console.WriteLine("\nLo ingresado no tiene formato númerico");
+                                    Console.ReadLine();
+                                    j--;
+                                }
+                            }
                             fechaNoAgregada = false;
+                        }
                         else
                             Console.Write("Ya se ha ingresado el sorteo para esta fecha\n");
-                    }
-
-                    for (int j = 0; j < matriz.GetLength(1); j++)
-                    {
-                        try
-                        {
-                            Console.Write("Ingrese numero para el " + (j + 1) + "° premio: ");
-                            int premio = Convert.ToInt32(Console.ReadLine());
-                            bool duplicado = PremioDuplicado(premio, diaAgregar, matriz);
-
-                            if (!(premio < 999 && premio > 0))
-                            {
-                                Console.WriteLine("\n\nEl premio ingresado no puede ser menor que 0 ni mayor a 999");
-                                j--;
-                            }
-                            else if (duplicado)
-                            {
-                                Console.WriteLine("\nEl premio ingresado ya existe para este día\n");
-                                j--;
-                            }
-                            else
-                            {
-                                matriz[diaAgregar - 1, j] = premio;
-                            }
-                        }
-                        catch
-                        {
-                            Console.WriteLine("\nLo ingresado no tiene formato númerico");
-                            Console.ReadLine();
-                            j--;
-                        }
                     }
                 }
                 catch
@@ -159,29 +160,6 @@ namespace Primer_Obligatorio_2022
 
 
             }
-
-
-            //for (int j = 0; j < matriz.GetLength(1); j++)
-            //{
-            //    Console.Write("Ingrese numero para el " + (j + 1) + "° premio: ");
-            //    int premio = Convert.ToInt32(Console.ReadLine());
-            //    bool duplicado = PremioDuplicado(premio, diaAgregar, matriz);
-
-            //    if (!(premio < 999 && premio > 0))
-            //    {
-            //        Console.WriteLine("\n\nEl premio ingresado no puede ser menor que 0 ni mayor a 999");
-            //        j--;
-            //    }
-            //    else if(duplicado)
-            //    {
-            //        Console.WriteLine("\nEl premio ingresado ya existe para este día\n");
-            //        j--;
-            //    }
-            //    else
-            //    {
-            //        matriz[diaAgregar - 1, j] = premio;
-            //    }
-            //}
         }
 
         static bool PremioDuplicado(int premio, int dia, int[,] matriz)
@@ -212,7 +190,7 @@ namespace Primer_Obligatorio_2022
                 if (matriz[dia - 1, i] == 0)
                     resultado++;
             }
-
+            //Devuelvo true si ya se ha ingresado el sorteo para la fecha indicada
             if (resultado == 0)
                 return true;
             else
@@ -229,12 +207,26 @@ namespace Primer_Obligatorio_2022
                 bool existeYaSorteo = FechaIngresada(matriz, dia);
                 if (existeYaSorteo)
                 {
-                    Console.Write("Ingrese que posicion desea modificar: ");
-                    int posicion = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("\n\nIngrese el nuevo número del premio: ");
-                    int premio = Convert.ToInt32(Console.ReadLine());
-
-                    matriz[dia-1,posicion-1] = premio;
+                    bool error = true;
+                    while (error)
+                    {
+                        Console.Write("\nIngrese que posicion desea modificar: ");
+                        int posicion = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("\nIngrese el nuevo número del premio: ");
+                        int premio = Convert.ToInt32(Console.ReadLine());
+                        if (PremioDuplicado(premio, dia, matriz))
+                        {
+                            Console.WriteLine("Ya existe el premio ingresado para este dia");
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            matriz[dia - 1, posicion - 1] = premio;
+                            error = false;
+                            Console.Clear();
+                        }
+                    }
                 }
                 else
                 {
@@ -251,18 +243,24 @@ namespace Primer_Obligatorio_2022
         {
             for (int i = 0; i < matriz.GetLength(0); i++)
             {
-                Console.Write("Día " + (i + 1) + ": ");
-                for (int j = 0; j < matriz.GetLength(1); j++)
+                if (FechaIngresada(matriz,i+1))
                 {
-                    Console.Write(matriz[i,j] + " ");
+                    Console.Write("Día " + (i + 1) + ": ");
+                    for (int j = 0; j < matriz.GetLength(1); j++)
+                    {
+                        Console.Write(matriz[i,j] + " ");
+                    }
                 }
+                else
+                    Console.Write("Día " + (i + 1) + ": No se ha ingresado el sorteo para esta fecha");
+                
                 Console.WriteLine();
             }
         }
 
         static void MostrarUnicoSorteo(int[,] matriz)
         {
-            Console.Write("Ingrese la fecha del sorteo que desea mostrar: ");
+            Console.Write("\nIngrese la fecha del sorteo que desea mostrar: ");
             try
             {
                 int dia = Convert.ToInt32(Console.ReadLine());
@@ -281,13 +279,12 @@ namespace Primer_Obligatorio_2022
                 }
                 else
                 {
-                    Console.Write("Aun no se ha agregado el sorteo para este día");
+                    Console.WriteLine("\n Aun no se ha agregado el sorteo para esta fecha");
                 }
             }
             catch 
             {
-
-                
+                Console.WriteLine("\n Lo ingresado no tiene formato númerico");
             }
 
         }
